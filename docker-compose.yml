@@ -1,0 +1,54 @@
+services:
+  next:
+    build:
+      context: ./
+      dockerfile: ./docker/nextjs/Dockerfile
+    container_name: next-app
+    ports:
+      - '3000:3000'
+    networks:
+      - cryptosims
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    volumes:
+      - ./:/usr/src/app
+    depends_on:
+      - mongodb
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:3000']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  express:
+    build:
+      context: ./docker/express
+      dockerfile: Dockerfile
+    container_name: express-server
+    ports:
+      - '3001:3001'
+    networks:
+      - cryptosims
+    depends_on:
+      - mongodb
+      - next
+    env_file:
+      - .env
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - cryptosims
+
+networks:
+  cryptosims:
+    name: cryptosims
+    driver: bridge
+
+volumes:
+  mongodb_data:
+    name: mongodb_data

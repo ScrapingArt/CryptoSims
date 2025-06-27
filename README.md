@@ -1,24 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
 ## Getting Started
 
-```bash
-docker run -d --name mongodb -p 27017:27017 mongo
-npm install
-NODE_OPTIONS='--inspect' npm run dev
-
-curl -L -o bitcoin-historical-data.zip https://www.kaggle.com/api/v1/datasets/download/mczielinski/bitcoin-historical-data && unzip bitcoin-historical-data.zip && mv *.csv data.csv && rm bitcoin-historical-data.zip
-curl -X POST http://localhost:3000/api/update -H 'x-api-key: $API_KEY'
-curl -X POST http://localhost:3000/api/catchup -H 'x-api-key: $API_KEY'
+You need a .env file at the root of the project. You can use ```openssl rand -base64 128``` to generate the keys.
+```
+MONGODB_URI=mongodb://mongodb:27017
+SECRET_KEY=secret
+SECRET_KEY_REFRESH=refresh
+API_KEY=api
+DOMAIN=localhost
 ```
 
-An additional server (express) is used to sideload /src/app/server.js to avoid Binance API limit rate. To avoid over-complicating the startup of nextjs, it runs as a standalone instance. A cron job is used to run /api/catchup and /api/execute.
+```bash
+docker-compose up
+```
+On startup, the database will read from a file containing candles since 2012, it will take a few minutes to process the file into the database.
+
+An additional server (express) is used to sideload /src/app/server.js to avoid Binance API limit rate. To avoid over-complicating the startup of nextjs, it runs as a standalone instance. A cron job is used to run /api/catchup, /api/execute and /api/agregate.
 
 [http://localhost:3000](http://localhost:3000)
 
 ## Introduction
 
-Cryptomoneys investments simulation. The goal is to produce a SPA (Single Page Applications) which provides a Candle Graph.
+Bitcoin investment simulation. The goal is to produce a SPA (Single Page Applications) which provides a Candle Graph and a standard trading experience.
 
 ### Candle Graph
 
@@ -63,4 +65,5 @@ Cryptomoneys investments simulation. The goal is to produce a SPA (Single Page A
 	<li>100% tests coverage E2E (Cypress or another)</li>
 	<li>ZodTS for validation/schemas</li>
 	<li>Moving all the authentication in the wallet context</li>
+	<li>Refresh page when a limit order could trigger</li>
 </ul>
