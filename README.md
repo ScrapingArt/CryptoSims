@@ -65,5 +65,4 @@ Bitcoin investment simulation. The goal is to produce a SPA (Single Page Applica
 	<li>100% tests coverage E2E (Cypress or another)</li>
 	<li>ZodTS for validation/schemas</li>
 	<li>Moving all the authentication in the wallet context</li>
-	<li>Refresh page when a limit order could trigger</li>
 </ul>

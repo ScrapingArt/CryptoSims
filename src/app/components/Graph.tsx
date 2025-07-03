@@ -419,8 +419,6 @@ const Graph = () => {
 		let pollInterval: NodeJS.Timeout;
 
 		if (selectedRange === ranges[0].value) {
-			fetchLatestCandle();
-
 			pollInterval = setInterval(fetchLatestCandle, POLLING_INTERVAL);
 		}
 

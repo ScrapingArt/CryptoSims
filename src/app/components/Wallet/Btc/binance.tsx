@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useWallet } from '../../../contexts/WalletContext';
 
 const BINANCE_WS_URL = 'wss://stream.binance.com:9443/ws/btcusdt@trade';
 const BINANCE_REST_URL =
@@ -11,6 +12,14 @@ const BinanceTicker: React.FC = () => {
 	const [color, setColor] = useState<string>('text-accent2');
 	const [change, setChange] = useState<number | null>(null);
 	const [changePercent, setChangePercent] = useState<number | null>(null);
+	const { openOrders, fetchWallet } = useWallet();
+	const [orders, setOrders] = useState<
+		[string, Date, number, number, string][]
+	>([]);
+
+	useEffect(() => {
+		setOrders(openOrders);
+	}, [openOrders]);
 
 	useEffect(() => {
 		const fetchChange = async () => {
@@ -24,8 +33,7 @@ const BinanceTicker: React.FC = () => {
 				setChangePercent(null);
 			}
 		};
-		fetchChange();
-		const interval = setInterval(fetchChange, 60000);
+		const interval = setInterval(fetchChange, 1000);
 		return () => clearInterval(interval);
 	}, []);
 
@@ -56,6 +64,29 @@ const BinanceTicker: React.FC = () => {
 			ws?.close();
 		};
 	}, [lastPrice]);
+
+	useEffect(() => {
+		const updateOrders = async () => {
+			for (const order of orders) {
+				if (
+					price != null &&
+					order[4] === 'buy' &&
+					parseFloat(price) <= order[3]
+				) {
+					fetchWallet();
+				}
+				if (
+					price != null &&
+					order[4] === 'sell' &&
+					parseFloat(price) <= order[3]
+				) {
+					fetchWallet();
+				}
+			}
+		};
+		const interval = setInterval(updateOrders, 1000);
+		return () => clearInterval(interval);
+	}, [price, openOrders]);
 
 	const formattedPrice = price
 		? `$${parseFloat(price).toLocaleString(undefined, {
@@ -98,7 +129,8 @@ const BinanceTicker: React.FC = () => {
 				{change !== null && changePercent !== null && (
 					<div className={`${changeColor} text-xs`}>
 						24h ≃ {change > 0 ? '+' : ''}
-						{Number(change.toFixed(2)).toLocaleString()} ({changePercent > 0 ? '+' : ''}
+						{Number(change.toFixed(2)).toLocaleString()} (
+						{changePercent > 0 ? '+' : ''}
 						{changePercent.toFixed(2)}%)
 					</div>
 				)}
