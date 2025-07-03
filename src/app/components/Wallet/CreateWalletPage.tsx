@@ -66,7 +66,7 @@ const CreateWalletPage = ({
 
 			if (error) {
 				setError(error);
-			} else if (data?.seedPhrase && data?.balanceFiat !== undefined) {
+			} else if (data?.seedPhrase) {
 				setSeedPhrase(data?.seedPhrase);
 			}
 		} catch (err) {

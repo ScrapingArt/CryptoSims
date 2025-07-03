@@ -44,6 +44,16 @@ services:
     networks:
       - cryptosims
 
+  fastapi:
+    image: tiangolo/uvicorn-gunicorn-fastapi:python3.11
+    container_name: fastapi-docs
+    volumes:
+      - ./docs:/app
+    ports:
+      - "8000:80"
+    networks:
+      - cryptosims
+
 networks:
   cryptosims:
     name: cryptosims

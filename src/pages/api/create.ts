@@ -8,6 +8,13 @@ import rateLimit from 'lib/rateLimit';
 
 const ROUTE_ENABLED = true;
 
+const allowedOrigins = [
+	'http://localhost:3000',
+	'http://127.0.0.1:3000',
+	'http://localhost:8000',
+	'http://127.0.0.1:8000'
+];
+
 // function generateRandomInteger(min: number, max: number) {
 // 	return Math.floor(min + Math.random() * (max - min + 1));
 // }
@@ -19,6 +26,18 @@ const ROUTE_ENABLED = true;
 // }
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+	const origin = req.headers.origin;
+	if (origin && allowedOrigins.includes(origin)) {
+		res.setHeader('Access-Control-Allow-Origin', origin);
+	}
+	res.setHeader('Access-Control-Allow-Methods', 'GET,POST,DELETE,OPTIONS');
+	res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+
+	if (req.method === 'OPTIONS') {
+		res.status(200).end();
+		return;
+	}
+
 	if (!ROUTE_ENABLED) {
 		return res
 			.status(503)
@@ -61,7 +80,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 		await wallet.save();
 		res.setHeader('Content-Type', 'application/json');
-		res.status(200).json({ seedPhrase, balanceFiat: wallet.balanceFiat });
+		res.status(200).json({ seedPhrase });
 	} catch (error) {
 		res.status(500).json({ error: 'Failed to create new wallet' });
 
