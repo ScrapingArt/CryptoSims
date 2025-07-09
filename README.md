@@ -1,3 +1,5 @@
+[recording.webm](https://github.com/user-attachments/assets/85528f13-e1c9-4c84-810b-18fa1330f5fc)
+
 ## Getting Started
 
 You need a .env file at the root of the project. You can use ```openssl rand -base64 128``` to generate the keys.
