@@ -1,4 +1,4 @@
-import { useBtc } from "app/contexts/BtcContext";
+import { useBtc } from "@contexts/BtcContext";
 
 const BtcBtns = () => {
 	const { setOp } = useBtc();

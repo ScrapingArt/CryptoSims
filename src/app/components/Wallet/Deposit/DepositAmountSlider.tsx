@@ -1,4 +1,4 @@
-import { useDeposit } from 'app/contexts/DepositContext';
+import { useDeposit } from '@contexts/DepositContext';
 
 const DepositAmountSlider = () => {
 	const { amount, setAmount } = useDeposit();

@@ -1,6 +1,6 @@
-import { useDeposit } from 'app/contexts/DepositContext';
-import { useWallet } from 'app/contexts/WalletContext';
-import apiClient from 'lib/apiClient';
+import { useDeposit } from '@contexts/DepositContext';
+import { useWallet } from '@contexts/WalletContext';
+import apiClient from '@lib/apiClient';
 
 const DepositSubmit = () => {
 	const {

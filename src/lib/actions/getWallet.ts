@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
 import Wallet from '@models/wallet';
 import getConfig from '../getConfig';
-import connectToDatabase from 'lib/actions/connectToDatabase';
+import connectToDatabase from '@lib/actions/connectToDatabase';
 
 const { SECRET_KEY } = getConfig();
 

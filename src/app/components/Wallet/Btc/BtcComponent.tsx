@@ -1,4 +1,4 @@
-import { BtcProvider, useBtc } from 'app/contexts/BtcContext';
+import { BtcProvider, useBtc } from '@contexts/BtcContext';
 import BinanceTicker from './binance';
 import BtcBtns from './BtcBtns';
 import BtcOrderTypeBtns from './BtcOrderTypeBtns';

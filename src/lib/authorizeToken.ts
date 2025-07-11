@@ -1,6 +1,6 @@
 import { NextApiRequest } from 'next';
 import jwt from 'jsonwebtoken';
-import getConfig from 'lib/getConfig';
+import getConfig from '@lib/getConfig';
 import { accessTokenSchema } from '@schemas/tokenSchema';
 
 const { SECRET_KEY } = getConfig();

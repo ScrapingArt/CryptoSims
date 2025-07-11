@@ -1,4 +1,4 @@
-import { useBtc } from 'app/contexts/BtcContext';
+import { useBtc } from '@contexts/BtcContext';
 import BtcAmountBtn from './BtcAmountBtn';
 import BtcAmountInput from './BtcAmountInput';
 import BtcAmountSlider from './BtcAmountSlider';

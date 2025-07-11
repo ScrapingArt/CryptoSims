@@ -1,4 +1,4 @@
-import { useBtc } from 'app/contexts/BtcContext';
+import { useBtc } from '@contexts/BtcContext';
 import BtcLimitBtn from './BtcLimitBtn';
 import BtcLimitInput from './BtcLimitInput';
 

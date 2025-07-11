@@ -1,4 +1,4 @@
-import { DepositProvider, useDeposit } from 'app/contexts/DepositContext';
+import { DepositProvider, useDeposit } from '@contexts/DepositContext';
 import DepositBtn from './DepositBtn';
 import DepositAmount from './DepositAmount';
 import DepositSubmitMessage from './DepositSubmitMessage';

@@ -2,8 +2,8 @@
 
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
-import getConfig from 'lib/getConfig';
-import connectToDatabase from 'lib/actions/connectToDatabase';
+import getConfig from '@lib/getConfig';
+import connectToDatabase from '@lib/actions/connectToDatabase';
 
 const { SECRET_KEY } = getConfig();
 

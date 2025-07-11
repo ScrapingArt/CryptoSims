@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import { ZodError } from 'zod';
 // import connectToDatabase from '@actions/connectToDatabase';
 import { getMethodSchema } from '@schemas/methodSchema';
-import authorizeToken from 'lib/authorizeToken';
+import authorizeToken from '@lib/authorizeToken';
 
 const ROUTE_ENABLED = true;
 

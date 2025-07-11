@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useState, useRef, useContext, useEffect } from 'react';
-import apiClient from 'lib/apiClient';
+import apiClient from '@lib/apiClient';
 
 type BtcContextType = {
 	amount: number | string;

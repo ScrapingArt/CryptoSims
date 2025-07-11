@@ -1,6 +1,6 @@
-import { useBtc } from 'app/contexts/BtcContext';
-import apiClient from 'lib/apiClient';
-import { useWallet } from 'app/contexts/WalletContext';
+import { useBtc } from '@contexts/BtcContext';
+import apiClient from '@lib/apiClient';
+import { useWallet } from '@contexts/WalletContext';
 
 const BtcSubmit = () => {
 	const {

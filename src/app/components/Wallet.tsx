@@ -3,8 +3,8 @@
 import NoWalletPage from './Wallet/NoWalletPage';
 import { useEffect, useState, useCallback } from 'react';
 import { getCookie } from 'cookies-next';
-import { useWallet } from 'app/contexts/WalletContext';
-import apiClient from 'lib/apiClient';
+import { useWallet } from '@contexts/WalletContext';
+import apiClient from '@lib/apiClient';
 import BalanceComponent from './Wallet/Balance/BalanceComponent';
 import BtcComponent from './Wallet/Btc/BtcComponent';
 import { AnimateChangeInHeight } from './Animations/AnimateChangeInHeight';

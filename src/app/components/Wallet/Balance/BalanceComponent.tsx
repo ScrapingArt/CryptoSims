@@ -1,4 +1,4 @@
-import { useWallet } from "app/contexts/WalletContext";
+import { useWallet } from "@contexts/WalletContext";
 import BalanceFiat from './BalanceFiat';
 import Profit from './Profit';
 import Deposit from '../Deposit/Deposit';

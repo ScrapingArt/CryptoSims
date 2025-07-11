@@ -1,4 +1,4 @@
-import { useBtc } from 'app/contexts/BtcContext';
+import { useBtc } from '@contexts/BtcContext';
 
 const BtcLimitBtn = () => {
 	const { TargetInputRef: inputRef, target, setIsEditingTarget } = useBtc();

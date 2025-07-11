@@ -2,7 +2,7 @@
 // import { ZodError } from 'zod';
 // import connectToDatabase from '@actions/connectToDatabase';
 // import Wallet from '@models/wallet';
-// import authorizeToken from 'lib/authorizeToken';
+// import authorizeToken from '@lib/authorizeToken';
 // import { postMethodSchema } from '@schemas/methodSchema';
 
 // const ROUTE_ENABLED = true;

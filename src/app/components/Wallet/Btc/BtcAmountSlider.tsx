@@ -1,5 +1,5 @@
-import { useBtc } from 'app/contexts/BtcContext';
-import { useWallet } from 'app/contexts/WalletContext';
+import { useBtc } from '@contexts/BtcContext';
+import { useWallet } from '@contexts/WalletContext';
 
 const BtcAmountSlider = () => {
 	const { amount, op, setAmount } = useBtc();

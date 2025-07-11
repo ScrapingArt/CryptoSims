@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import dynamic from 'next/dynamic';
-import apiClient from 'lib/apiClient';
+import apiClient from '@lib/apiClient';
+// import apiClient from '../../lib/apiClient';
+// ...existing code...
 import '../globals.css';
 
 // Import core

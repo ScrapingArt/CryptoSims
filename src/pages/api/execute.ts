@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import getConfig from 'lib/getConfig';
+import getConfig from '@lib/getConfig';
 import { postMethodSchema } from '@schemas/methodSchema';
 import connectToDatabase from '@actions/connectToDatabase';
 import { listOrders } from '@actions/listOrders';

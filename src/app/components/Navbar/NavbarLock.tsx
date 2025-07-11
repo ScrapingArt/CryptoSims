@@ -1,5 +1,5 @@
-import { useWallet } from 'app/contexts/WalletContext';
-import apiClient from 'lib/apiClient';
+import { useWallet } from '@contexts/WalletContext';
+import apiClient from '@lib/apiClient';
 
 const NavbarLock = () => {
 	const { setIsUnlocked } = useWallet();

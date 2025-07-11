@@ -2,7 +2,7 @@
 
 import * as bip39 from 'bip39';
 import Wallet from '@models/wallet';
-import connectToDatabase from 'lib/actions/connectToDatabase';
+import connectToDatabase from '@lib/actions/connectToDatabase';
 import isAuth from './isAuth';
 
 function generateRandomInteger(min: number, max: number) {

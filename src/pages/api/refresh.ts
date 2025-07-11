@@ -4,8 +4,8 @@ import jwt from 'jsonwebtoken';
 import { ZodError } from 'zod';
 // import connectToDatabase from '@actions/connectToDatabase';
 import { postMethodSchema } from '@schemas/methodSchema';
-import refreshAccessToken from 'lib/refreshAccessToken';
-import rateLimit from 'lib/rateLimit';
+import refreshAccessToken from '@lib/refreshAccessToken';
+import rateLimit from '@lib/rateLimit';
 
 const ROUTE_ENABLED = true;
 

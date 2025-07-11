@@ -1,5 +1,5 @@
 import { useWallet } from '../../contexts/WalletContext';
-import apiClient from 'lib/apiClient';
+import apiClient from '@lib/apiClient';
 
 const cancel = async (orderId: string) => {
 	interface Response {

@@ -1,4 +1,4 @@
-import { useBtc } from 'app/contexts/BtcContext';
+import { useBtc } from '@contexts/BtcContext';
 import BtcOrderTypeMarket from './BtcOrderTypeMarket';
 import BtcOrderTypeLimit from './BtcOrderTypeLimit';
 

@@ -1,4 +1,4 @@
-import { useWallet } from 'app/contexts/WalletContext';
+import { useWallet } from '@contexts/WalletContext';
 
 const Profit = () => {
 	const { balanceBtc, netProfit, percentProfit, btcToFiat } = useWallet();

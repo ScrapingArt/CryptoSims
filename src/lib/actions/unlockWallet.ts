@@ -4,7 +4,7 @@ import { z } from 'zod';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 import Wallet from '@models/wallet';
-import connectToDatabase from 'lib/actions/connectToDatabase';
+import connectToDatabase from '@lib/actions/connectToDatabase';
 import { cookies } from 'next/headers';
 import getConfig from '../getConfig';
 

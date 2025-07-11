@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { PipelineStage } from 'mongoose';
 import Ohlc, { IOhlc } from '@models/ohlc';
 import connectToDatabase from '@actions/connectToDatabase';
-// import authorizeToken from 'lib/authorizeToken';
+// import authorizeToken from '@lib/authorizeToken';
 import { getMethodSchema } from '@schemas/methodSchema';
 import fs from 'fs';
 import path from 'path';

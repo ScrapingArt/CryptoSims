@@ -3,7 +3,7 @@ import { ZodError } from 'zod';
 import connectToDatabase from '@actions/connectToDatabase';
 import Wallet from '@models/wallet';
 import Order from '@models/order';
-import authorizeToken from 'lib/authorizeToken';
+import authorizeToken from '@lib/authorizeToken';
 import { postMethodSchema } from '@schemas/methodSchema';
 import mongoose from 'mongoose';
 

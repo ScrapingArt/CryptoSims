@@ -2,12 +2,12 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { ZodError } from 'zod';
 import jwt from 'jsonwebtoken';
 import { serialize } from 'cookie';
-import getConfig from 'lib/getConfig';
+import getConfig from '@lib/getConfig';
 import connectToDatabase from '@actions/connectToDatabase';
 import Wallet from '@models/wallet';
 import { postMethodSchema } from '@schemas/methodSchema';
 import seedBodySchema from '@schemas/seedBodySchema';
-import rateLimit from 'lib/rateLimit';
+import rateLimit from '@lib/rateLimit';
 
 const { SECRET_KEY, SECRET_KEY_REFRESH } = getConfig();
 const ROUTE_ENABLED = true;

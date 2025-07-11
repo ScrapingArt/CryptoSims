@@ -86,7 +86,7 @@ const BinanceTicker: React.FC = () => {
 		};
 		const interval = setInterval(updateOrders, 1000);
 		return () => clearInterval(interval);
-	}, [price, openOrders]);
+	}, [price, openOrders, fetchWallet, orders]);
 
 	const formattedPrice = price
 		? `$${parseFloat(price).toLocaleString(undefined, {

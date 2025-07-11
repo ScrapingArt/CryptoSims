@@ -6,7 +6,7 @@ import {
 	useState,
 	useCallback
 } from 'react';
-import apiClient from 'lib/apiClient';
+import apiClient from '@lib/apiClient';
 import { IOhlc } from '@models/ohlc';
 
 type WalletContextType = {

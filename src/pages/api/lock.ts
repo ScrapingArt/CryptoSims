@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { ZodError } from 'zod';
 import { serialize } from 'cookie';
 import { deleteMethodSchema } from '@schemas/methodSchema';
-import rateLimit from 'lib/rateLimit';
+import rateLimit from '@lib/rateLimit';
 
 const ROUTE_ENABLED = true;
 

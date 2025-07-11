@@ -2,7 +2,7 @@ import DepositAmountInput from './DepositAmountInput';
 import DepositAmountBtn from './DepositAmountBtn';
 import DepositAmountSlider from './DepositAmountSlider';
 import DepositSubmit from './DepositSubmit';
-import { useDeposit } from 'app/contexts/DepositContext';
+import { useDeposit } from '@contexts/DepositContext';
 
 const DepositAmount = () => {
 	const { isEditing } = useDeposit();

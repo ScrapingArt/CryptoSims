@@ -4,7 +4,7 @@ import connectToDatabase from '@actions/connectToDatabase';
 import Wallet from '@models/wallet';
 import Order from '@models/order';
 import Ohlc, { IOhlc } from '@models/ohlc';
-import authorizeToken from 'lib/authorizeToken';
+import authorizeToken from '@lib/authorizeToken';
 import { postMethodSchema } from '@schemas/methodSchema';
 
 const ROUTE_ENABLED = true;

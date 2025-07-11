@@ -1,4 +1,4 @@
-import { useWallet } from 'app/contexts/WalletContext';
+import { useWallet } from '@contexts/WalletContext';
 import type { SortKey, SortOrder } from './OrderHistory';
 
 const OrderHistoryBody = ({

@@ -1,4 +1,4 @@
-import { useDeposit } from 'app/contexts/DepositContext';
+import { useDeposit } from '@contexts/DepositContext';
 
 const DepositAmountInput = () => {
 	const { amount, setAmount, inputRef, setIsEditing } = useDeposit();

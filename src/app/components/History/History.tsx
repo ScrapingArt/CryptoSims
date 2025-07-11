@@ -1,6 +1,6 @@
 import OrderHistory from './OrderHistory';
 import OpenOrders from './OpenOrders';
-import { useWallet } from 'app/contexts/WalletContext';
+import { useWallet } from '@contexts/WalletContext';
 
 const History = () => {
 	const { openOrders, orderHistory } = useWallet();

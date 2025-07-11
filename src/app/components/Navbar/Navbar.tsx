@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useWallet } from 'app/contexts/WalletContext';
+import { useWallet } from '@contexts/WalletContext';
 import Image from 'next/image';
 import NavbarRefresh from './NavbarRefresh';
 import NavbarLock from './NavbarLock';
