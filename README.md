@@ -2,15 +2,6 @@
 
 ## Getting Started
 
-You need a .env file at the root of the project. You can use ```openssl rand -base64 128``` to generate the keys.
-```
-MONGODB_URI=mongodb://mongodb:27017
-SECRET_KEY=secret
-SECRET_KEY_REFRESH=refresh
-API_KEY=api
-DOMAIN=localhost
-```
-
 ```bash
 docker-compose up
 ```

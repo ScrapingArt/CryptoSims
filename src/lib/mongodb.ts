@@ -3,7 +3,19 @@ import getConfig from './getConfig';
 
 mongoose.connection.setMaxListeners(10);
 
-const { MONGODB_URI } = getConfig();
+const { MONGO_DB, MONGO_PORT, MONGO_USERNAME, MONGO_PASSWORD } = getConfig();
+
+const buildMongoUri = () => {
+	if (!MONGO_USERNAME || !MONGO_PASSWORD) {
+		throw new Error('MONGO_USERNAME and MONGO_PASSWORD environment variables are required');
+	}
+
+	const host = process.env.NODE_ENV === 'production' ? 'mongodb' : 'localhost';
+
+	return `mongodb://${encodeURIComponent(MONGO_USERNAME)}:${encodeURIComponent(MONGO_PASSWORD)}@${host}:${MONGO_PORT}/${MONGO_DB}?authSource=admin`;
+};
+
+const MONGODB_URI = buildMongoUri();
 
 const options = {
 	dbName: 'cryptosims',
@@ -11,7 +23,8 @@ const options = {
 	autoIndex: true,
 	maxPoolSize: 10,
 	serverSelectionTimeoutMS: 5000,
-	socketTimeoutMS: 45000
+	socketTimeoutMS: 45000,
+	authSource: 'admin'
 };
 
 interface CachedMongoose {
@@ -57,8 +70,14 @@ const removeConnectionHandlers = () => {
 };
 
 const validateConfig = () => {
+	if (!MONGO_USERNAME) {
+		throw new Error('MONGO_USERNAME environment variable is not set');
+	}
+	if (!MONGO_PASSWORD) {
+		throw new Error('MONGO_PASSWORD environment variable is not set');
+	}
 	if (!MONGODB_URI) {
-		throw new Error('MongoDB URI is not set');
+		throw new Error('MongoDB URI could not be constructed');
 	}
 };
 

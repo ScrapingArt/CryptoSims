@@ -1,25 +1,70 @@
 services:
+
+  init-secrets:
+    image: alpine:latest
+    volumes:
+      - ./secrets:/secrets
+      - ./:/workspace
+    entrypoint: >
+      sh -e -c "
+        apk add --no-cache openssl xxd;
+        if [ ! -s /secrets/mongo_password ]; then
+          openssl rand -hex 64 > /secrets/mongo_password;
+          echo 'Generated mongo_password';
+        fi;
+        if ! grep -q '^MONGO_DB=' /workspace/.env; then
+          echo 'MONGO_DB=cryptosims' >> /workspace/.env;
+          echo 'Set MONGO_DB=cryptosims';
+        fi;
+        if ! grep -q '^MONGO_PORT=' /workspace/.env; then
+          echo 'MONGO_PORT=27017' >> /workspace/.env;
+          echo 'Set MONGO_PORT=27017';
+        fi;
+        if ! grep -q '^SECRET_KEY=' /workspace/.env; then
+          echo \"SECRET_KEY=$(openssl rand -hex 64)\" >> /workspace/.env;
+          echo 'Generated SECRET_KEY';
+        fi;
+        if ! grep -q '^SECRET_KEY_REFRESH=' /workspace/.env; then
+          echo \"SECRET_KEY_REFRESH=$(openssl rand -hex 64)\" >> /workspace/.env;
+          echo 'Generated SECRET_KEY_REFRESH';
+        fi;
+        if ! grep -q '^API_KEY=' /workspace/.env; then
+          echo \"API_KEY=$(openssl rand -hex 64)\" >> /workspace/.env;
+          echo 'Generated API_KEY';
+        fi;
+        if ! grep -q '^DOMAIN=' /workspace/.env; then
+          echo 'DOMAIN=localhost' >> /workspace/.env;
+          echo 'Set DOMAIN=localhost';
+        fi
+      "
+
   next:
     build:
       context: ./
       dockerfile: ./docker/nextjs/Dockerfile
     container_name: next-app
     ports:
-      - '3000:3000'
+      - '127.0.0.1:3000:3000'
     networks:
       - cryptosims
     environment:
       - NODE_ENV=production
       - PORT=3000
+      - MONGO_USERNAME=admin
     volumes:
       - ./:/usr/src/app
     depends_on:
-      - mongodb
+      init-secrets:
+        condition: service_completed_successfully
+      mongodb:
+        condition: service_started
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:3000']
       interval: 10s
       timeout: 5s
       retries: 10
+    secrets:
+      - mongo_password
 
   express:
     build:
@@ -27,12 +72,16 @@ services:
       dockerfile: Dockerfile
     container_name: express-server
     ports:
-      - '3001:3001'
+      - '127.0.0.1:3001:3001'
     networks:
       - cryptosims
     depends_on:
-      - mongodb
-      - next
+      init-secrets:
+        condition: service_completed_successfully
+      mongodb:
+        condition: service_started
+      next:
+        condition: service_healthy
     env_file:
       - .env
 
@@ -43,6 +92,14 @@ services:
       - mongodb_data:/data/db
     networks:
       - cryptosims
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD_FILE=/run/secrets/mongo_password
+    depends_on:
+      init-secrets:
+        condition: service_completed_successfully
+    secrets:
+      - mongo_password
 
 #   fastapi:
 #     image: tiangolo/uvicorn-gunicorn-fastapi:python3.11
@@ -62,3 +119,7 @@ networks:
 volumes:
   mongodb_data:
     name: mongodb_data
+
+secrets:
+  mongo_password:
+    file: ./secrets/mongo_password
