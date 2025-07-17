@@ -52,7 +52,16 @@ services:
       - PORT=3000
       - MONGO_USERNAME=admin
     volumes:
-      - ./:/usr/src/app
+      - ./src:/usr/src/app/src:ro
+      - ./public:/usr/src/app/public:ro
+      - ./.env:/usr/src/app/.env:ro
+      - ./eslint.config.mjs:/usr/src/app/esling.config.mjs:ro
+      - ./next-env.d.ts:/usr/src/app/next-env.d.ts:ro
+      - ./next.config.ts:/usr/src/app/next.config.ts:ro
+      - ./package.json:/usr/src/app/package.json
+      - ./postcss.config.mjs:/usr/src/app/postcss.config.mjs:ro
+      - ./tailwind.config.ts:/usr/src/app/tailwind.config.ts:ro
+      - ./tsconfig.json:/usr/src/app/tsconfig.json:ro
     depends_on:
       init-secrets:
         condition: service_completed_successfully
