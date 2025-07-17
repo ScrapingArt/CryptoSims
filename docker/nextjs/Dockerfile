@@ -1,15 +1,20 @@
 FROM node:20
 
+RUN addgroup --gid 1001 cryptosims
+RUN adduser --disabled-password --uid 1001 --ingroup cryptosims cryptosims
+
+USER cryptosims
+
 WORKDIR /usr/src/app
 
+COPY ./src ./src
+COPY ./public ./public
 COPY ./.env ./
 COPY ./eslint.config.mjs ./
 COPY ./next-env.d.ts ./
 COPY ./next.config.ts ./
 COPY ./package.json .
 COPY ./postcss.config.mjs ./
-COPY ./public ./public
-COPY ./src ./src
 COPY ./tailwind.config.ts ./
 COPY ./tsconfig.json ./
 

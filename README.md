@@ -51,6 +51,9 @@ Bitcoin investment simulation. The goal is to produce a SPA (Single Page Applica
 ### WIP
 
 <ul>
+	<li>Special route for healthcheck</li>
+	<li>Fully implement secrets</li>
+	<li>Monitoring stack</li>
 	<li>Jest unit tests for the backend</li>
 	<li>Offline handling</li>
 	<li>PWA Android/iOS</li>
