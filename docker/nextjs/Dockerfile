@@ -8,7 +8,7 @@ USER cryptosims
 WORKDIR /usr/src/app
 
 COPY ./src ./src
-COPY ./public ./public
+COPY --chown=cryptosims:cryptosims ./public ./public
 COPY ./.env ./
 COPY ./eslint.config.mjs ./
 COPY ./next-env.d.ts ./
