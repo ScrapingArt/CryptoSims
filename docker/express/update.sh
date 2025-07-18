@@ -1,4 +1,5 @@
 #!/bin/sh
+
 set -e
 
 echo "Waiting for next-app to be healthy..."

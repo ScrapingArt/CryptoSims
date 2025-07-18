@@ -10,7 +10,7 @@ const buildMongoUri = () => {
 		throw new Error('MONGO_USERNAME and MONGO_PASSWORD environment variables are required');
 	}
 
-	const host = process.env.NODE_ENV === 'production' ? 'mongodb' : 'localhost';
+	const host = "mongodb";
 
 	return `mongodb://${encodeURIComponent(MONGO_USERNAME)}:${encodeURIComponent(MONGO_PASSWORD)}@${host}:${MONGO_PORT}/${MONGO_DB}?authSource=admin`;
 };
