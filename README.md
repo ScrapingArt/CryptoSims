@@ -3,7 +3,7 @@
 ## Getting Started
 
 ```bash
-docker-compose up
+docker-compose up init-secrets && docker compose up -d --build
 ```
 On startup, the database will read from a file containing candles since 2012, it will take a few minutes to process the file into the database.
 
